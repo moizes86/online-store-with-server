@@ -1,0 +1,113 @@
+.product-item {
+  border: 1px solid black;
+  padding: 20px 10px;
+
+  .background-image {
+    width: 100%;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+// // // // // // 
+.product-item-carousel {
+  
+  height: 100%;
+  
+
+  @media screen and (max-height: 400px) and (max-width: 1024px) {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+
+    .title {
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1; /* number of lines to show */
+      -webkit-box-orient: vertical;
+    }
+
+    .description {
+      display: none;
+      // color: blue;
+    }
+  }
+
+  .background-image{
+    height: 50%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+
+      @media screen and (max-width: 640px) {
+        -webkit-line-clamp: 1;
+      }
+    }
+
+    .description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+
+      @media screen and (max-height: 400px) {
+        display: none;
+      }
+
+      @media screen and (max-width: 320px) {
+        -webkit-line-clamp: 1; /* number of lines to show */
+      }
+
+      @media screen and (max-width: 1024px) {
+        -webkit-line-clamp: 2;
+      }
+    }
+
+    .price-and-btn {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .price {
+        // color: blue;
+        display: block;
+        margin-bottom: 5px;
+        letter-spacing: 0.5px;
+      }
+      .btn-add-to-cart {
+      }
+    }
+  }
+}
+
+// // // // // //
+.product-item-shop {
+  display: flex;
+  width: 100vw;
+  text-align: left;
+  justify-content: start;
+  // margin: 30px 0;
+
+  .background-image{
+    width:25%;
+    margin-right: 50px;
+  }
+  .content {
+    width: 75%;
+  }
+}

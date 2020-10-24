@@ -1,0 +1,11 @@
+.products-directory{
+    h1{
+        display:block;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    .product-container{
+        width:30vw;
+        height:40vh;
+    }
+}
