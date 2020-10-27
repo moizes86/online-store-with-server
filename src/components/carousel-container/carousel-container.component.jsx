@@ -5,7 +5,7 @@ import ProductItem from "../product-item/product-item.component";
 import "react-multi-carousel/lib/styles.css";
 import "./carousel-container.styles.scss";
 
-const CarouselContainer = ({ products }) => {
+const CarouselContainer = ({ products, match }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -21,7 +21,7 @@ const CarouselContainer = ({ products }) => {
       items: 2,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 650, min: 0 },
       items: 1,
     },
   };
@@ -35,7 +35,7 @@ const CarouselContainer = ({ products }) => {
         autoPlaySpeed={2000}
       >
         {products.map((el, i) => (
-          <ProductItem {...el} key={i} type="product-item product-item-carousel" />
+          <ProductItem {...el}  key={i} type="product-item product-item-carousel" />
         ))}
       </Carousel>
     </div>
