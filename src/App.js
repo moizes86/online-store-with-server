@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
 
 import { Switch, Route, Redirect } from "react-router-dom";
@@ -10,6 +10,7 @@ import Homepage from "./pages/homepage/homepage.component";
 import Shop from "./pages/shop/shop.component";
 import { setCurrentUser } from "./redux/user/user.actions";
 import SignInAndSignUp from "./components/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Footer from "./components/footer/footer.component";
 
 const App = ({ setCurrentUser }) => {
   const products = [
@@ -24,7 +25,7 @@ const App = ({ setCurrentUser }) => {
     },
     {
       id: 2,
-      title: "Mens Casual Premium Slim Fit T-Shirts ",
+      title: "Mens Casual Premium Slim Fit T-Shirts",
       price: 22.3,
       description:
         "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
@@ -62,7 +63,7 @@ const App = ({ setCurrentUser }) => {
     },
     {
       id: 6,
-      title: "Solid Gold Petite Micropave ",
+      title: "Solid Gold Petite Micropave",
       price: 168,
       description:
         "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
@@ -216,7 +217,7 @@ const App = ({ setCurrentUser }) => {
       setCurrentUser(userAuth);
       return () => unsubscribeFromAuth();
     });
-  }, []);
+  }, [setCurrentUser]);
 
   return (
     <div className="App">
@@ -233,6 +234,8 @@ const App = ({ setCurrentUser }) => {
           {auth.currentUser ? <Redirect to="/" /> : null}
         </Route>
       </Switch>
+
+      <Footer/>
     </div>
   );
 };

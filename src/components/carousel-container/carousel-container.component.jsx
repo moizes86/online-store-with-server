@@ -35,7 +35,7 @@ const CarouselContainer = ({ products, match }) => {
         autoPlaySpeed={2000}
       >
         {products.map((el, i) => (
-          <ProductItem {...el}  key={i} type="product-item product-item-carousel" />
+          <ProductItem item={el}  key={i} type="product-item product-item-carousel" />
         ))}
       </Carousel>
     </div>

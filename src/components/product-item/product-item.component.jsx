@@ -1,10 +1,15 @@
 import React from "react";
 import "./product-item.styles.scss";
+
 import {Link} from 'react-router-dom';
+
+import { connect } from 'react-redux';
+import { addItem } from '../../redux/cart/cart.actions';
 
 import CustomButton from "../custom-button/custom-button.component";
 
-const ProductItem = ({ category, description, image, price, title, type }) => {
+const ProductItem = ({addItem, item, type }) => {
+  const { category, description, image, price, title} = item;
   return (
     <div className={type}>
       <div
@@ -29,11 +34,14 @@ const ProductItem = ({ category, description, image, price, title, type }) => {
 
         <div className="price-and-btn">
           <span className="price">{price}$</span>
-          <CustomButton> ADD TO CART </CustomButton>
+          <CustomButton onClick={()=>addItem(item)}> ADD TO CART </CustomButton>
         </div>
       </div>
     </div>
   );
 };
 
-export default (ProductItem);
+const mapDispatchToProps = dispatch => ({
+addItem: item=> dispatch(addItem(item))
+})
+export default connect(null, mapDispatchToProps)(ProductItem);

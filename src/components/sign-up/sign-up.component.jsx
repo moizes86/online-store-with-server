@@ -21,6 +21,7 @@ const SignUp = () => {
     setValues({ ...values, [name]: value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

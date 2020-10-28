@@ -4,7 +4,6 @@ import "./shop.styles.scss";
 
 import MenuDirectory from "../../components/menu-directory/menu-directory.component";
 import ProductsDirectory from "../../components/products-directory/products-directory.component";
-import ProductItem from "../../components/product-item/product-item.component";
 
 const Shop = ({ products, match }) => {
   const categories = products

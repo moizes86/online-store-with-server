@@ -3,12 +3,8 @@
 .App {
   text-align: center;
   padding: 20px;
-  background-color: white;
-
-  .header{
-    display: flex;
-  }
-
+  display: flex;
+  flex-direction: column;
   * {
     box-sizing: border-box;
   }
