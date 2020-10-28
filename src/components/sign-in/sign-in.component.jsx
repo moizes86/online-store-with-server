@@ -4,22 +4,32 @@ import { withRouter } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import "./sign-in.styles.scss";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 
 const SignIn = () => {
+  const [values, setValues] = useState({ email: "", password: "" }); // 1
+  const { email, password } = values; // 2. initialize
+
   const handleInputChange = (e) => {
     // 3
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setValues({ email: "", password: "" });
+
+    try{
+      await auth.signInWithEmailAndPassword(email, password);
+      setValues({ email: "", password: "" });
+
+    } catch (error){
+      console.log(error);
+    }
+    
   };
 
-  const [values, setValues] = useState({ email: "", password: "" }); // 1
-  const { email, password } = values; // 2. initialize
+
 
   return (
     <div className="sign-in">

@@ -3,17 +3,15 @@ import "./App.scss";
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import SignIn from "./components/sign-in/sign-in.component";
 import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.component";
 import Shop from "./pages/shop/shop.component";
 import { setCurrentUser } from "./redux/user/user.actions";
+import SignInAndSignUp from "./components/sign-in-and-sign-up/sign-in-and-sign-up.component";
 
-
-const App = ({setCurrentUser}) => {
-
+const App = ({ setCurrentUser }) => {
   const products = [
     {
       id: 1,
@@ -204,25 +202,25 @@ const App = ({setCurrentUser}) => {
   ];
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if(userAuth){
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapshot => {
+        userRef.onSnapshot((snapshot) => {
           setCurrentUser({
             id: snapshot.id,
-            ...snapshot.data()
-          })
-        })
+            ...snapshot.data(),
+          });
+        });
       }
+
       setCurrentUser(userAuth);
       return () => unsubscribeFromAuth();
     });
   }, []);
 
-
   return (
     <div className="App">
-      <Header ></Header>
+      <Header></Header>
 
       <Switch>
         <Route exact path="/">
@@ -231,7 +229,7 @@ const App = ({setCurrentUser}) => {
         <Route path="/shop">
           {products ? <Shop products={products} /> : <p>LOADING</p>}
         </Route>
-        <Route exact path="/sign-in" component={SignIn}>
+        <Route exact path="/sign-in" component={SignInAndSignUp}>
           {auth.currentUser ? <Redirect to="/" /> : null}
         </Route>
       </Switch>
@@ -240,11 +238,11 @@ const App = ({setCurrentUser}) => {
 };
 
 const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
-})
+  currentUser: user.currentUser,
+});
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user=>dispatch(setCurrentUser(user))
-})
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
