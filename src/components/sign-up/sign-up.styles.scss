@@ -1,5 +1,15 @@
 .sign-up{
-    // flex-grow: 1;
-    // padding: 20px;
-    width: 35vw;
+    width: 360px;
+
+    @media screen and (max-width:800px){
+        width: 70%;
+
+        button{
+            margin: auto;
+        }
+    }
+
+    @media screen and (max-width:400px){
+        width: 100%;
+    }
 }
