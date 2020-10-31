@@ -11,6 +11,12 @@
   right: 30px;
   z-index: 6;
 
+  @media screen and (max-width: 400px){
+    right:10px;
+    left:10px;
+    
+  }
+
   .cart-items {
     height: 240px;
     display: flex;
@@ -26,4 +32,6 @@
     font-size: 18px;
     margin: 50px auto;
   }
+
 }
+

@@ -1,43 +1,82 @@
 .checkout-item {
-    width: 100%;
-    display: flex;
-    min-height: 100px;
-    border-bottom: 1px solid darkgrey;
-    padding: 15px 0;
-    font-size: 20px;
-    align-items: center;
-  
-    .image-container {
-      width: 23%;
+  width: 100%;
+  display: flex;
+  min-height: 100px;
+  border-bottom: 1px solid darkgrey;
+  padding: 15px 0;
+  font-size: 20px;
+  align-items: center;
+
+  @media screen and (max-width: 450px) {
+    flex-wrap: wrap;
+  }
+
+  .image-container {
+    width: 23%;
+    padding-right: 35px;
+
+    @media screen and(max-width:650px) {
+      width: 20%;
       padding-right: 15px;
-  
-      img {
-        width: 100%;
-        height: 100%;
-      }
     }
-    .name,
-    .quantity,
-    .price {
-      width: 23%;
-    }
-  
-    .quantity {
-      display: flex;
-      padding-left: 20px;
 
-      .arrow {
-        cursor: pointer
-      }
-
-      .value {
-        margin: 0 10px;
-      }
-    }
-  
-    .remove-button {
-      padding-left: 12px;
-      cursor: pointer;
+    img {
+      width: 90%;
+      height: 90%;
     }
   }
-  
+  .name {
+    width: 35%;
+    padding-right: 20px;
+
+    @media screen and (max-width: 650px) {
+      width: 40%;
+      text-align: start;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 67%;
+      margin: 0 10px 0 20px;
+      padding-right: 0;
+    }
+  }
+
+  .quantity {
+    display: flex;
+    justify-content: center;
+
+    .arrow {
+      cursor: pointer;
+    }
+
+    .value {
+      margin: 0 10px;
+    }
+  }
+
+  .remove-button {
+    padding-right: 20px;
+    text-align: end;
+    cursor: pointer;
+
+    @media screen and (min-width: 600px) and (max-width:650px){
+      margin-right: 15px;
+    }
+  }
+
+  .quantity,
+  .price,
+  .remove-button {
+    flex-grow: 1;
+
+    @media screen and (max-width: 650px) {
+      width: 15%;
+      padding-left: 0;
+    }
+
+    @media screen and (max-width: 450px) {
+      margin-top: 20px;
+      justify-content: stretch;
+    }
+  }
+}
