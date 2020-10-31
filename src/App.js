@@ -2,15 +2,20 @@ import React, { useEffect } from "react";
 import "./App.scss";
 
 import { Switch, Route, Redirect } from "react-router-dom";
+//
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+//
 import { connect } from "react-redux";
-
-import Header from "./components/header/header.component";
+import { setCurrentUser } from "./redux/user/user.actions";
+//
 import Homepage from "./pages/homepage/homepage.component";
 import Shop from "./pages/shop/shop.component";
-import { setCurrentUser } from "./redux/user/user.actions";
 import SignInAndSignUp from "./components/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Checkout from "./pages/checkout/checkout.component";
+//
+import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
+//
 
 const App = ({ setCurrentUser }) => {
   const products = [
@@ -99,7 +104,7 @@ const App = ({ setCurrentUser }) => {
     },
     {
       id: 10,
-      title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+      title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gbs",
       price: 109,
       description:
         "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
@@ -138,7 +143,7 @@ const App = ({ setCurrentUser }) => {
     {
       id: 14,
       title:
-        "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
+        "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED",
       price: 999.99,
       description:
         "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
@@ -233,6 +238,7 @@ const App = ({ setCurrentUser }) => {
         <Route exact path="/sign-in" component={SignInAndSignUp}>
           {auth.currentUser ? <Redirect to="/" /> : null}
         </Route>
+        <Route exact path="/checkout" component={Checkout} />
       </Switch>
 
       <Footer/>
