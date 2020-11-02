@@ -5,7 +5,7 @@ import ProductItem from "../product-item/product-item.component";
 import "react-multi-carousel/lib/styles.css";
 import "./carousel-container.styles.scss";
 
-const CarouselContainer = ({ products, match }) => {
+const CarouselContainer = ({ products }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
