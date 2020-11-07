@@ -1,9 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import "./menu-item.styles.scss";
+import "./category-item.styles.scss";
 
-const MenuItem = ({ category, imageURL, history, match }) => (
+const CategoryItem = ({ category, imageURL, history, match }) => (
   <div
     className="menu-item"
     onClick={() => history.push(`${match.url}/${category}`)}
@@ -18,4 +18,4 @@ const MenuItem = ({ category, imageURL, history, match }) => (
   </div>
 );
 
-export default withRouter(MenuItem);
+export default withRouter(CategoryItem);
