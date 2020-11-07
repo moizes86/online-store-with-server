@@ -18,7 +18,7 @@ import {
 import CategoriesDirectory from "../../components/categories-directory/categories-directory.component";
 import ProductsDirectory from "../../components/products-directory/products-directory.component";
 
-const Shop = ({ items, categories, match }) => {
+const Shop = ({ match }) => {
   return (
     <div className="shop">
       <Switch>

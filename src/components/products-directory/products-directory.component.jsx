@@ -25,6 +25,9 @@ import ProductItem from "../product-item/product-item.component";
 
 const ProductsDirectory = ({ dispatch, singleItem, itemsByCategory }) => {
   const { category, itemID } = useParams();
+console.log(itemID);
+console.log(singleItem);
+console.log(itemsByCategoy);
 
   useEffect(() => {
     itemID
