@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 //STYLES
 import "./products-directory.styles.scss";
@@ -6,14 +6,7 @@ import "./products-directory.styles.scss";
 //REDUX
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import {
-  selectItemsByCategory,
-  selectSingleItem,
-} from "../../redux/shop/shop.selectors";
-import {
-  getItemsByCategory,
-  getSingleItem,
-} from "../../redux/shop/shop.actions";
+import { selectShopItems } from "../../redux/shop/shop.selectors";
 
 //ROUTING
 import { useParams } from "react-router-dom";
@@ -23,17 +16,19 @@ import ProductItem from "../product-item/product-item.component";
 
 /////////
 
-const ProductsDirectory = ({ dispatch, singleItem, itemsByCategory }) => {
+const ProductsDirectory = ({ items }) => {
   const { category, itemID } = useParams();
-console.log(itemID);
-console.log(singleItem);
-console.log(itemsByCategoy);
 
-  useEffect(() => {
-    itemID
-      ? dispatch(getSingleItem(itemID))
-      : dispatch(getItemsByCategory(category));
-  }, [itemID, category, dispatch]);
+  function getSingleItem() {
+    return items.filter((el) => el.id === parseInt(itemID));
+  }
+
+  function getItemsByCategory() {
+    return items.filter((el) => el.category === category);
+  }
+
+  let singleItem = getSingleItem();
+  let itemsByCategory = getItemsByCategory();
 
   return (
     <div className="products-directory">
@@ -58,8 +53,7 @@ console.log(itemsByCategoy);
 };
 
 const mapStateToProps = createStructuredSelector({
-  singleItem: selectSingleItem,
-  itemsByCategory: selectItemsByCategory,
+  items: selectShopItems,
 });
 
 export default connect(mapStateToProps)(ProductsDirectory);

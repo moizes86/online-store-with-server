@@ -2,15 +2,11 @@ import ShopActionTypes from "./shop.types";
 
 import {
   getCategories,
-  utilsGetItemsByCategory,
-  utilsGetSingleItem,
 } from "./shop.utils";
 
 const INITIAL_STATE = {
   items: [],
   categories: null,
-  itemsByCategory: null,
-  singleItem: false,
   isFetching: false,
   errorMessage: undefined,
 };
@@ -36,18 +32,6 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         errorMessage: action.payload,
-      };
-
-    case ShopActionTypes.GET_ITEMS_BY_CATEGORY:
-      return {
-        ...state,
-        itemsByCategory: utilsGetItemsByCategory(state.items, action.payload),
-      };
-
-    case ShopActionTypes.GET_SINGLE_ITEM:
-      return {
-        ...state,
-        singleItem: utilsGetSingleItem(state.items, action.payload),
       };
 
     default:

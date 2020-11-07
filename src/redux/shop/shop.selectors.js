@@ -17,12 +17,3 @@ export const selectShopCategories = createSelector(
     shop => shop.categories
 );
 
-export const selectItemsByCategory = createSelector(
-    [selectShop],
-    shop => shop.itemsByCategory
-);
-
-export const selectSingleItem = createSelector(
-    [selectShop],
-    shop => shop.singleItem
-);

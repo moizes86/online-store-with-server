@@ -11,10 +11,3 @@ export const getCategories = (items) => {
       return acc;
     }, []);
 };
-
-export const utilsGetItemsByCategory = (items, category) =>
-  items.filter((el) => el.category === category);
-
-export const utilsGetSingleItem = (items, itemID) => {
-  return items.filter((el) => el.id === parseInt(itemID));
-};
