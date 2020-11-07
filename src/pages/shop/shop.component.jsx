@@ -4,7 +4,7 @@ import React from "react";
 import "./shop.styles.scss";
 
 //ROUTING
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 
 //REDUX
 import { connect } from "react-redux";
@@ -21,12 +21,14 @@ import ProductsDirectory from "../../components/products-directory/products-dire
 const Shop = ({ items, categories, match }) => {
   return (
     <div className="shop">
+      <Switch>
       <Route exact path={`${match.path}`} component={CategoriesDirectory} />
       <Route
         exact
         path={[`${match.path}/:category`, `${match.path}/:category/:itemID`]}
         component={ProductsDirectory}
       />
+      </Switch>
     </div>
   );
 };
