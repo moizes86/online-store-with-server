@@ -33,3 +33,8 @@ export const getSingleItem = (itemID) => ({
   type: ShopActionTypes.GET_SINGLE_ITEM,
   payload: itemID,
 });
+
+export const getItemsFromFirebase = collection => ({
+  type: ShopActionTypes.GET_ITEMS_FROM_FIREBASE,
+  payload: collection
+})

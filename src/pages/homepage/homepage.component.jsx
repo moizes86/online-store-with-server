@@ -1,17 +1,19 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 //STYLES
 import "./homepage.styles.scss";
 
 //REDUX
 import { connect } from "react-redux";
-import { fetchItemsAsync } from "../../redux/shop/shop.actions";
+import { getItemsFromFirebase } from "../../redux/shop/shop.actions";
 import { createStructuredSelector } from "reselect";
+import { selectShopItems } from "../../redux/shop/shop.selectors";
+
+//FIREBASE
 import {
-  selectIsItemsFetching,
-  selectShopItems,
-} from "../../redux/shop/shop.selectors";
+  firestore,
+  convertItemsCollectionSnapshotToMap,
+} from "../../firebase/firebase.utils";
 
 //CAROUSEL
 import CarouselContainer from "../../components/carousel-container/carousel-container.component";
@@ -20,21 +22,21 @@ import CarouselContainer from "../../components/carousel-container/carousel-cont
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-const Homepage = ({ dispatch, isFetching, items }) => {
+const Homepage = ({ dispatch, items }) => {
   useEffect(() => {
-    if (!items.length) {
-      dispatch(fetchItemsAsync());
+    if (!items) {
+      const itemsRef = firestore.collection("items");
+      const unsubscribeFromSnapshot = itemsRef.onSnapshot(async (snapshot) => {
+        const itemsFromFirebase = convertItemsCollectionSnapshotToMap(snapshot);
+        dispatch(getItemsFromFirebase(itemsFromFirebase));
+      });
+      return () => unsubscribeFromSnapshot();
     }
-  }, [items.length, dispatch]);
+  }, [dispatch, items]);
 
-  return isFetching ? (
+  return !items ? (
     <div className="loader-container">
-      <Loader
-        type="Puff"
-        color="#00BFFF"
-        height={200}
-        width={200}
-      />
+      <Loader type="Puff" color="#00BFFF" height={200} width={200} />
     </div>
   ) : (
     <div className="homepage">
@@ -44,7 +46,6 @@ const Homepage = ({ dispatch, isFetching, items }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isFetching: selectIsItemsFetching,
   items: selectShopItems,
 });
 

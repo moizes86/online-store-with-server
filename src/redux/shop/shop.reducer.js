@@ -1,8 +1,6 @@
 import ShopActionTypes from "./shop.types";
 
-import {
-  getCategories,
-} from "./shop.utils";
+import { getCategories } from "./shop.utils";
 
 const INITIAL_STATE = {
   items: [],
@@ -32,6 +30,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         errorMessage: action.payload,
+      };
+
+    case ShopActionTypes.GET_ITEMS_FROM_FIREBASE:
+      return {
+        ...state,
+        items: action.payload,
       };
 
     default:

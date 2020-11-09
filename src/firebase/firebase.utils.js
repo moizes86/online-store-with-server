@@ -29,21 +29,37 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
-      console.log('error creating user', error.message);
+      console.log("error creating user", error.message);
     }
   }
 
   return userRef;
 };
 
+export const addItemsCollection = async (key, itemsToAdd) => {
+  const collectionRef = firestore.collection(key);
+  const batch = firestore.batch();
+  itemsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  await batch.commit();
+};
+
+export const convertItemsCollectionSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => doc.data());
+  return transformedCollection;
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' })
+provider.setCustomParameters({ prompt: "select_account" });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
