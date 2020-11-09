@@ -5,9 +5,7 @@ export const fetchItemsAsync = () => {
     dispatch(fetchItemsStart());
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((items) => {
-        dispatch(fetchItemsSuccess(items));
-      })
+      .then((items) => dispatch(fetchItemsSuccess(items)))
       .catch((error) => dispatch(fetchItemsFailure(error)));
   };
 };
@@ -28,10 +26,10 @@ export const fetchItemsFailure = (error) => ({
 
 export const getItemsByCategory = (category) => ({
   type: ShopActionTypes.GET_ITEMS_BY_CATEGORY,
-  payload: category
+  payload: category,
 });
 
-export const getSingleItem = itemID => ({
+export const getSingleItem = (itemID) => ({
   type: ShopActionTypes.GET_SINGLE_ITEM,
-  payload: itemID
+  payload: itemID,
 });

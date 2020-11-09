@@ -28,7 +28,14 @@ const Homepage = ({ dispatch, isFetching, items }) => {
   }, [items.length, dispatch]);
 
   return isFetching ? (
-    <Loader />
+    <div className="loader-container">
+      <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={200}
+        width={200}
+      />
+    </div>
   ) : (
     <div className="homepage">
       <CarouselContainer products={items} />
