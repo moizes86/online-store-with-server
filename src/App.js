@@ -42,7 +42,6 @@ const App = ({ setCurrentUser, /*shopItems*/ }) => {
     <div className="App">
       <Header />
 
-    <div className="content-wrapper">
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={Shop} />
@@ -51,7 +50,7 @@ const App = ({ setCurrentUser, /*shopItems*/ }) => {
         </Route>
         <Route exact path="/checkout" component={Checkout} />
       </Switch>
-      </div>
+
       <Footer />
     </div>
   );

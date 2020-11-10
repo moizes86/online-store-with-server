@@ -3,7 +3,7 @@ import ShopActionTypes from "./shop.types";
 import { getCategories } from "./shop.utils";
 
 const INITIAL_STATE = {
-  items: [],
+  items: null,
   categories: null,
   isFetching: false,
   errorMessage: undefined,
