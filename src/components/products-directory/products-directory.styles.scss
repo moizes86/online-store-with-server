@@ -1,18 +1,17 @@
-.products-directory{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+.products-directory {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 
-    h1{
-        text-transform: uppercase;
+  h1 {
+    text-transform: uppercase;
+  }
+
+  .product-container {
+    @media screen and (min-width: 800px) {
+    //   width: 75vw;
     }
-    
-    @media screen and (min-width: 800px){
-        .product-container{
-            width:75vw;
-        }
-    }
-   
+  }
 }
