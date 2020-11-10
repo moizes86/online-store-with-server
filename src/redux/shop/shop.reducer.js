@@ -36,6 +36,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         items: action.payload,
+        categories: getCategories(action.payload)
       };
 
     default:

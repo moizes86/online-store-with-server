@@ -1,15 +1,18 @@
 .products-directory{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
+    align-content: center;
 
     h1{
-        display:block;
         text-transform: uppercase;
     }
     
-    .product-container{
-        width:30vw;
-        height:40vh;
+    @media screen and (min-width: 800px){
+        .product-container{
+            width:75vw;
+        }
     }
+   
 }

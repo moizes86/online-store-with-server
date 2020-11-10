@@ -1,21 +1,26 @@
-
-
 .App {
   text-align: center;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin-bottom: 50px;
   * {
     box-sizing: border-box;
   }
 
-  .loader-container{
-    height:70vh;display: flex;
+  .loader-container {
+    height: 70vh;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  a{
+  .content-wrapper{
+    margin-bottom: 20px;;
+  }
+
+  a {
     text-decoration: none;
     color: inherit;
   }

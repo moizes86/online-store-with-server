@@ -7,12 +7,9 @@ import "./shop.styles.scss";
 import { Route, withRouter, Switch } from "react-router-dom";
 
 //REDUX
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import {
-  selectShopItems,
-  selectShopCategories,
-} from "../../redux/shop/shop.selectors";
+// import { connect } from "react-redux";
+// import { createStructuredSelector } from "reselect";
+// import { selectShopCategories } from "../../redux/shop/shop.selectors";
 
 //COMPONENTS
 import CategoriesDirectory from "../../components/categories-directory/categories-directory.component";
@@ -22,20 +19,19 @@ const Shop = ({ match }) => {
   return (
     <div className="shop">
       <Switch>
-      <Route exact path={`${match.path}`} component={CategoriesDirectory} />
-      <Route
-        exact
-        path={[`${match.path}/:category`, `${match.path}/:category/:itemID`]}
-        component={ProductsDirectory}
-      />
+        <Route exact path={`${match.path}`} component={CategoriesDirectory} />
+        <Route
+          exact
+          path={[`${match.path}/:category`, `${match.path}/:category/:itemID`]}
+          component={ProductsDirectory}
+        />
       </Switch>
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  items: selectShopItems,
-  categories: selectShopCategories,
-});
-
-export default connect(mapStateToProps)(withRouter(Shop));
+// const mapStateToProps = createStructuredSelector({
+//   / });
+// 
+// export default connect(mapStateToProps)(withRouter(Shop));
+export default (withRouter(Shop));

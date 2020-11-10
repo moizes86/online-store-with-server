@@ -35,10 +35,12 @@ const ProductsDirectory = ({ items }) => {
       <h1>{category}</h1>
 
       {itemID ? (
-        <ProductItem
-          class_type="product-item product-item-single"
-          item={singleItem[0]}
-        />
+        <div className="product-container">
+          <ProductItem
+            class_type="product-item product-item-single"
+            item={singleItem[0]}
+          />
+        </div>
       ) : (
         itemsByCategory.map((el, i) => (
           <ProductItem
