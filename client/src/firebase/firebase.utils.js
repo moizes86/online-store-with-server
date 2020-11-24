@@ -2,17 +2,20 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-const config = {
-  apiKey: "AIzaSyA-jEa7r4rkf1qFnitRWfkEoVDQiqCBvRo",
-  authDomain: "sign-in-practice-e6e73.firebaseapp.com",
-  databaseURL: "https://sign-in-practice-e6e73.firebaseio.com",
-  projectId: "sign-in-practice-e6e73",
-  storageBucket: "sign-in-practice-e6e73.appspot.com",
-  messagingSenderId: "828445741557",
-  appId: "1:828445741557:web:4844ddcc805b8f816e50bc",
+var firebaseConfig = {
+  apiKey: `AIzaSyAjMAn4rkG0PyTytecVZzro0BPcBe-ahZA`,
+  // apiKey: `${process.env.REACT_APP_FIREBASE_SECRET_KEY}`,
+  authDomain: "online-store-15ffc.firebaseapp.com",
+  databaseURL: "https://online-store-15ffc.firebaseio.com",
+  projectId: "online-store-15ffc",
+  storageBucket: "online-store-15ffc.appspot.com",
+  messagingSenderId: "324647104537",
+  appId: "1:324647104537:web:32274a48ca7d28a1553a88",
+  measurementId: "G-SF3RQW6ZPP",
 };
-
-firebase.initializeApp(config);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
@@ -21,6 +24,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   const snapShot = await userRef.get();
 
+  console.log(userAuth)
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();

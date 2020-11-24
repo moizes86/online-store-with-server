@@ -15,7 +15,7 @@ export const getUserFromFirebaseAsync =  () => {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
           setCurrentUser({
-            id: snapshot.id,
+            userId: snapshot.id,
             ...snapshot.data(),
           });
         });

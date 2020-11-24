@@ -18,11 +18,12 @@ import SignInAndSignUp from "./components/sign-in-and-sign-up/sign-in-and-sign-u
 import Checkout from "./pages/checkout/checkout.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
+// import { addItemsCollection } from "./firebase/firebase.utils";
 //
 
 const App = ({dispatch, currentUser}) => {
   useEffect(() => {
-    dispatch(getUserFromFirebaseAsync())
+    dispatch(getUserFromFirebaseAsync());
   }, [ dispatch]);
 
   return (

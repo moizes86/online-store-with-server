@@ -5,15 +5,18 @@ import "./homepage.styles.scss";
 
 //REDUX
 import { connect } from "react-redux";
-import { getItemsFromFirebase } from "../../redux/shop/shop.actions";
+import {
+  fetchItemsAsync,
+  // getItemsFromFirebase,
+} from "../../redux/shop/shop.actions";
 import { createStructuredSelector } from "reselect";
 import { selectShopItems } from "../../redux/shop/shop.selectors";
 
 //FIREBASE
-import {
-  firestore,
-  convertItemsCollectionSnapshotToMap,
-} from "../../firebase/firebase.utils";
+// import {
+//   firestore,
+//   convertItemsCollectionSnapshotToMap,
+// } from "../../firebase/firebase.utils";
 
 //CAROUSEL
 import CarouselContainer from "../../components/carousel-container/carousel-container.component";
@@ -24,13 +27,8 @@ import Loader from "react-loader-spinner";
 
 const Homepage = ({ dispatch, items }) => {
   useEffect(() => {
-    if (!items) {
-      const itemsRef = firestore.collection("items");
-      const unsubscribeFromSnapshot = itemsRef.onSnapshot(async (snapshot) => {
-        const itemsFromFirebase = convertItemsCollectionSnapshotToMap(snapshot);
-        dispatch(getItemsFromFirebase(itemsFromFirebase));
-      });
-      return () => unsubscribeFromSnapshot();
+    if (items.length === 0) {
+      dispatch(fetchItemsAsync());
     }
   }, [dispatch, items]);
 
@@ -50,3 +48,10 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps)(Homepage);
+
+// const itemsRef = firestore.collection("items");
+// const unsubscribeFromSnapshot = itemsRef.onSnapshot(async (snapshot) => {
+//   const itemsFromFirebase = convertItemsCollectionSnapshotToMap(snapshot);
+//   dispatch(getItemsFromFirebase(itemsFromFirebase));
+//   });
+//   return () => unsubscribeFromSnapshot();
