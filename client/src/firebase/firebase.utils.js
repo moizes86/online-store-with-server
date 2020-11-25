@@ -24,7 +24,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   const snapShot = await userRef.get();
 
-  console.log(userAuth)
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -43,21 +42,21 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-export const addItemsCollection = async (key, itemsToAdd) => {
-  const collectionRef = firestore.collection(key);
-  const batch = firestore.batch();
-  itemsToAdd.forEach((obj) => {
-    const newDocRef = collectionRef.doc();
-    batch.set(newDocRef, obj);
-  });
+// export const addItemsCollection = async (key, itemsToAdd) => {
+//   const collectionRef = firestore.collection(key);
+//   const batch = firestore.batch();
+//   itemsToAdd.forEach((obj) => {
+//     const newDocRef = collectionRef.doc();
+//     batch.set(newDocRef, obj);
+//   });
 
-  await batch.commit();
-};
+//   await batch.commit();
+// };
 
-export const convertItemsCollectionSnapshotToMap = (collections) => {
-  const transformedCollection = collections.docs.map((doc) => doc.data());
-  return transformedCollection;
-};
+// export const convertItemsCollectionSnapshotToMap = (collections) => {
+//   const transformedCollection = collections.docs.map((doc) => doc.data());
+//   return transformedCollection;
+// };
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
