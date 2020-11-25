@@ -27,7 +27,7 @@ import Loader from "react-loader-spinner";
 
 const Homepage = ({ dispatch, items }) => {
   useEffect(() => {
-    if (items.length === 0 || !items) {
+    if (!items) {
       dispatch(fetchItemsAsync());
     }
   }, [dispatch, items]);
