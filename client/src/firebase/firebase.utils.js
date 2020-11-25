@@ -3,8 +3,7 @@ import "firebase/firestore";
 import "firebase/auth";
 
 var firebaseConfig = {
-  apiKey: `AIzaSyAjMAn4rkG0PyTytecVZzro0BPcBe-ahZA`,
-  // apiKey: `${process.env.REACT_APP_FIREBASE_SECRET_KEY}`,
+  apiKey: `${process.env.REACT_APP_FIREBASE_SECRET_KEY}`,
   authDomain: "online-store-15ffc.firebaseapp.com",
   databaseURL: "https://online-store-15ffc.firebaseio.com",
   projectId: "online-store-15ffc",
