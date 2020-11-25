@@ -37,7 +37,7 @@ const SignIn = () => {
       <span>Sign in with your email and password</span>
       {/*  */}
 
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => {e.preventDefault(); handleSubmit(e)}}>
         <FormInput
           type="email"
           name="email"
@@ -58,6 +58,7 @@ const SignIn = () => {
         <div className="bottom">
           <CustomButton type="submit"> Sign In </CustomButton>
           <CustomButton
+          type="button"
             onClick={signInWithGoogle}
             googleButton={"google-sign-in"}
           >
